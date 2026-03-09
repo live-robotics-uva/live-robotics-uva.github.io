@@ -53,8 +53,9 @@
         .carousel-slide video {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             border-radius: 0;
+            background-color: var(--color-uva-blue);
         }
 
         .hero-overlay {
@@ -90,8 +91,8 @@
 
         .carousel-title-display {
             font-size: 1.25rem;
-            color: var(--color-uva-orange);
-            background: rgba(35, 45, 75, 0.8);
+            color: var(--color-white);
+            background: rgba(35, 45, 75, 0.85);
             display: inline-block;
             padding: 0.5rem 1.5rem;
             border-radius: 4px;
@@ -101,6 +102,7 @@
             opacity: 0;
             transition: all 0.4s ease;
             backdrop-filter: blur(4px);
+            font-weight: 500;
         }
 
         .carousel-title-display.show {
@@ -224,28 +226,26 @@
         <section class="hero">
             <div class="carousel-container" id="hero-carousel">
             </div>
-            <div class="hero-overlay"></div>
 
             <button class="carousel-nav prev" id="carousel-prev" aria-label="Previous slider">❮</button>
             <button class="carousel-nav next" id="carousel-next" aria-label="Next slider">❯</button>
 
             <div class="carousel-indicators" id="carousel-indicators"></div>
 
-            <div class="container hero-content">
-                <h2 class="hero-title">LIVE Robotics</h2>
-                <p class="hero-subtitle">Advancing robot learning and interaction for the real world</p>
-                <div class="carousel-title-display" id="carousel-title">Loading Featured Project...</div>
-            </div>
+            <div class="carousel-title-display" id="carousel-title"
+                style="position: absolute; bottom: 40px; z-index: 5;">Loading Featured Project...</div>
         </section>
 
         <section id="about" class="section section-light">
             <div class="container">
-                <h2 class="section-title">About Us</h2>
                 <div style="max-width: 800px; margin: 0 auto; text-align: center;">
-                    <p>The Learning and Interactive Robotics (LIVE) Lab at the University of Virginia focuses on
-                        developing intelligent robotic systems that can safely and effectively operate in unstructured
-                        environments. We explore the intersection of machine learning, control theory, and human-robot
-                        interaction to build robots that learn from and adapt to humans.</p>
+                    <p>Welcome to the Learning and Interactive Robotics (LIVE Robotics) Lab at the University of
+                        Virginia!
+                    </p>
+                    <p>Our research focuses on building intelligent robotic/embodied systems that can interact and
+                        assist humans in the physical world effectively, safely, and adaptively.
+                        We explore the intersection of AI/machine learning, robotics, and cognitive science to
+                        build robots that learn and interact with humans.</p>
                     <a href="research.html" class="btn btn-outline">Explore Our Research</a>
                 </div>
             </div>
@@ -253,7 +253,7 @@
 
         <section class="section">
             <div class="container">
-                <h2 class="section-title">Recent News</h2>
+                <h2 class="section-title">News</h2>
                 <div style="max-width: 800px; margin: 0 auto;">
                     <ul class="news-list" id="news-container">
                         <li class="news-item">
@@ -397,7 +397,7 @@
             document.getElementById('carousel-next').addEventListener('click', () => goToSlide(currentSlide + 1));
 
             function startCarousel() {
-                slideInterval = setInterval(() => goToSlide(currentSlide + 1), 5000);
+                slideInterval = setInterval(() => goToSlide(currentSlide + 1), 10000);
             }
             function resetInterval() {
                 clearInterval(slideInterval);
