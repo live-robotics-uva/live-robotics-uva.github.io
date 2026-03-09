@@ -1,10 +1,22 @@
 [
     {
-        "title": "Learning Agile Locomotion",
-        "path": "./assets/hero/project1_placeholder.jpg"
+        "title": "Learning Force-Regulated Manipulation with Our Tactile-Force-Controlled Gripper",
+        "path": "./assets/hero/TFGripper.png"
     },
     {
-        "title": "Interactive Object Manipulation",
-        "path": "./assets/hero/project2_placeholder.jpg"
+        "title": "Interactive Data Collection with Diffusion Policies",
+        "path": "./assets/hero/DiffDAgger.mp4"
+    },
+    {
+        "title": "Representation Learning for Viewpoint Invariance in Manipulation",
+        "path": "./assets/hero/CLASS.mp4"
+    },
+    {
+        "title": "Moving Out: Physically Grounded Human-AI Collaboration",
+        "path": "./assets/hero/MovingOut_maps.mp4"
+    },
+    {
+        "title": "O3Afford: Learning Object-to-Object Affordance",
+        "path": "./assets/hero/O3Afford.png"
     }
 ]
