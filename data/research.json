@@ -1,0 +1,32 @@
+[
+    {
+        "title": "Learning Force-Regulated Manipulation with a Low-Cost Tactile-Force-Controlled Gripper",
+        "description": "TF-Gripper is a low-cost tactile-sensing parallel-jaw gripper, paired with RETAF, a framework for high-frequency reactive force adaptation in robotic manipulation.",
+        "image": "TFGripper.png",
+        "link": "https://force-gripper.github.io/"
+    },
+    {
+        "title": "Moving Out: Physically-grounded Human-AI Collaboration",
+        "description": "Moving Out explores physically-grounded human-AI collaboration through a new benchmark environment and BASS, a method to enhance agent adaptability.",
+        "image": "MovingOut_maps.mp4",
+        "link": "https://live-robotics-uva.github.io/movingout_ai/"
+    },
+    {
+        "title": "CLASS: Contrastive Learning via Action Sequence Supervision for Robot Manipulation",
+        "description": "CLASS utilizes a supervised contrastive learning method that leverages action sequence similarity to learn robust behavioral representations for robotic manipulation under visual shifts.",
+        "image": "CLASS.mp4",
+        "link": "https://class-robot.github.io/"
+    },
+    {
+        "title": "O³Afford: One-Shot 3D Object-to-Object Affordance Grounding for Generalizable Robotic Manipulation",
+        "description": "O³Afford develops a novel one-shot 3D object-to-object affordance learning approach that integrates point cloud representations with VLMs for generalizable manipulation.",
+        "image": "O3Afford.png",
+        "link": "https://o3afford.github.io/"
+    },
+    {
+        "title": "Diff-DAgger: Uncertainty Estimation with Diffusion Policy for Robotic Manipulation",
+        "description": "Diff-DAgger leverages diffusion policy training objectives to accurately estimate uncertainty and actively seek expert help during interactive imitation learning.",
+        "image": "DiffDAgger.mp4",
+        "link": "https://diffdagger.github.io/"
+    }
+]

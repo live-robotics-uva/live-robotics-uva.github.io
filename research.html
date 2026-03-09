@@ -41,7 +41,8 @@
         .project-card video {
             width: 100%;
             height: 200px;
-            object-fit: cover;
+            object-fit: contain;
+            background-color: var(--color-uva-blue);
             border-bottom: 3px solid var(--color-uva-orange);
         }
 
@@ -63,22 +64,6 @@
             color: var(--color-text-gray);
             margin-bottom: var(--spacing-md);
             flex-grow: 1;
-        }
-
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: var(--spacing-md);
-        }
-
-        .project-tag {
-            background: var(--color-light-gray);
-            color: var(--color-text-gray);
-            font-size: 0.8rem;
-            padding: 2px 8px;
-            border-radius: 12px;
-            font-weight: 500;
         }
     </style>
 </head>
@@ -106,38 +91,8 @@
 
     <main class="container">
 
-        <div class="project-grid">
-            <div class="project-card">
-                <img src="./assets/hero/project1_placeholder.jpg" alt="Project 1"
-                    onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'300\'><rect width=\'600\' height=\'300\' fill=\'%23dadada\'/><text x=\'300\' y=\'150\' font-family=\'Arial\' font-size=\'20\' fill=\'%23666666\' text-anchor=\'middle\'>Project Image / Video</text></svg>'">
-                <div class="project-card-content">
-                    <h3 class="project-card-title">Agile Legged Locomotion</h3>
-                    <div class="project-tags">
-                        <span class="project-tag">Reinforcement Learning</span>
-                        <span class="project-tag">Locomotion</span>
-                    </div>
-                    <p class="project-card-desc">Training robust policies for quadrupedal robots to navigate highly
-                        irregular terrain dynamically.</p>
-                    <a href="#" class="btn btn-outline"
-                        style="align-self: flex-start; padding: 0.5rem 1rem; font-size: 0.8rem;">Project Page</a>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <img src="./assets/hero/project2_placeholder.jpg" alt="Project 2"
-                    onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'300\'><rect width=\'600\' height=\'300\' fill=\'%23dadada\'/><text x=\'300\' y=\'150\' font-family=\'Arial\' font-size=\'20\' fill=\'%23666666\' text-anchor=\'middle\'>Project Image / Video</text></svg>'">
-                <div class="project-card-content">
-                    <h3 class="project-card-title">Interactive Object Manipulation</h3>
-                    <div class="project-tags">
-                        <span class="project-tag">Computer Vision</span>
-                        <span class="project-tag">Manipulation</span>
-                    </div>
-                    <p class="project-card-desc">Developing closed-loop visuo-motor control for dextrous robotic hands
-                        manipulating everyday objects.</p>
-                    <a href="#" class="btn btn-outline"
-                        style="align-self: flex-start; padding: 0.5rem 1rem; font-size: 0.8rem;">Project Page</a>
-                </div>
-            </div>
+        <div class="project-grid" id="project-container">
+            <p style="text-align: center; grid-column: 1 / -1;">Loading research projects...</p>
         </div>
 
     </main>
@@ -168,6 +123,48 @@
     <script src="./scripts/main.js"></script>
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
+
+        const svgPlaceholder = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='300'><rect width='600' height='300' fill='%23dadada'/><text x='300' y='150' font-family='Arial' font-size='20' fill='%23666666' text-anchor='middle'>Project Image</text></svg>";
+
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch('./data/research.json')
+                .then(response => {
+                    if (!response.ok) throw new Error("Could not load research.json");
+                    return response.json();
+                })
+                .then(data => renderResearch(data))
+                .catch(err => {
+                    console.error(err);
+                    document.getElementById('project-container').innerHTML = "<p style='text-align:center; grid-column:1/-1;'>Error loading research data.</p>";
+                });
+        });
+
+        function renderResearch(projects) {
+            const container = document.getElementById('project-container');
+            container.innerHTML = '';
+
+            projects.forEach(project => {
+                const mediaSrc = project.image ? `./assets/hero/${project.image}` : svgPlaceholder;
+                const linkHref = project.link || '#';
+
+                let mediaHtml = `<img src="${mediaSrc}" alt="${project.title}" onerror="this.src='${svgPlaceholder}'">`;
+                if (project.image && project.image.toLowerCase().endsWith('.mp4')) {
+                    mediaHtml = `<video src="${mediaSrc}" autoplay loop muted playsinline></video>`;
+                }
+
+                const card = document.createElement('div');
+                card.className = 'project-card';
+                card.innerHTML = `
+                    ${mediaHtml}
+                    <div class="project-card-content">
+                        <h3 class="project-card-title">${project.title}</h3>
+                        <p class="project-card-desc">${project.description}</p>
+                        <a href="${linkHref}" target="${linkHref !== '#' ? '_blank' : '_self'}" class="btn btn-outline" style="align-self: flex-start; padding: 0.5rem 1rem; font-size: 0.8rem;">Project Page</a>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
     </script>
 </body>
 
