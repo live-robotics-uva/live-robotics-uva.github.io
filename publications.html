@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publications | LIVE Robotics - UVA</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Styles -->
+    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="stylesheet" href="./styles/components.css">
+    <style>
+        .filter-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: var(--spacing-xl);
+            margin-top: var(--spacing-xl);
+            /* Adjusted for no header */
+            justify-content: center;
+        }
+
+        .filter-btn {
+            background: var(--color-white);
+            border: 2px solid var(--color-medium-gray);
+            color: var(--color-text-gray);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            font-weight: 500;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--color-uva-orange);
+            color: var(--color-uva-orange);
+        }
+
+        .filter-btn.active {
+            background: var(--color-uva-orange);
+            border-color: var(--color-uva-orange);
+            color: var(--color-white);
+        }
+
+        .year-group {
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .year-title {
+            font-size: 1.8rem;
+            color: var(--color-uva-blue);
+            border-bottom: 2px solid var(--color-medium-gray);
+            padding-bottom: 8px;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .pub-item {
+            display: flex;
+            flex-direction: column;
+            padding: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+            background: var(--color-white);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            border-left: 4px solid var(--color-uva-orange);
+            transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+        }
+
+        .pub-item:hover {
+            transform: translateX(4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .pub-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--color-uva-blue);
+            margin-bottom: 4px;
+        }
+
+        .pub-authors {
+            color: var(--color-text-gray);
+            margin-bottom: 4px;
+            font-size: 0.95rem;
+        }
+
+        .pub-venue {
+            font-style: italic;
+            color: var(--color-text-main);
+            margin-bottom: var(--spacing-sm);
+            font-size: 0.95rem;
+        }
+
+        .pub-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .pub-tag {
+            background: var(--color-light-gray);
+            color: var(--color-text-gray);
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 12px;
+        }
+
+        .pub-links {
+            display: flex;
+            gap: 12px;
+            margin-top: auto;
+        }
+
+        .pub-link {
+            display: inline-flex;
+            align-items: center;
+            font-size: 0.85rem;
+            color: var(--color-link-blue);
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        .pub-link::before {
+            content: '🔗';
+            margin-right: 4px;
+            font-size: 0.8rem;
+        }
+
+        #pub-loading {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--color-text-gray);
+            padding: var(--spacing-xl);
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="global-header">
+        <div class="container header-top">
+            <a href="index.html" class="header-brand">
+                <img src="./assets/images/logo.png" alt="LIVE Lab Logo" class="logo"
+                    onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'60\'><rect width=\'100\' height=\'60\' fill=\'%23232d4b\'/><text x=\'50\' y=\'35\' font-family=\'Arial\' font-size=\'14\' fill=\'white\' text-anchor=\'middle\'>LOGO</text></svg>'">
+                <h1>UVA Learning and Interactive Robotics Lab</h1>
+            </a>
+            <button class="mobile-menu-toggle">☰</button>
+        </div>
+        <nav class="container">
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="team.html">Team</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="publications.html" class="active">Publications</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+
+        <div class="filter-section" id="filter-container">
+            <!-- Filter buttons injected here -->
+        </div>
+
+        <div id="pub-loading">Loading publications...</div>
+
+        <div id="publications-container">
+            <!-- Publications injected here -->
+        </div>
+
+    </main>
+
+    <footer class="global-footer">
+        <div class="container footer-content">
+            <div>
+                <h3>LIVE Robotics Lab</h3>
+                <p>University of Virginia<br>
+                    Department of Computer Science / Engineering<br>
+                    Charlottesville, VA 22904</p>
+            </div>
+            <div>
+                <h3>Quick Links</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="team.html">Team</a></li>
+                    <li><a href="research.html">Research</a></li>
+                    <li><a href="publications.html">Publications</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>&copy; <span id="year"></span> UVA Learning and Interactive Robotics Lab. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="./scripts/main.js"></script>
+    <script src="./scripts/bibtexParser.js"></script>
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        let allPublications = [];
+        let activeTag = 'All';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch('./data/publications.bib')
+                .then(response => {
+                    if (!response.ok) throw new Error("Could not find publications.bib");
+                    return response.text();
+                })
+                .then(bibtexData => {
+                    const parsed = window.BibtexParser.parse(bibtexData);
+                    processPublications(parsed);
+                })
+                .catch(err => {
+                    console.error("Error loading BibTeX:", err);
+                    document.getElementById('pub-loading').innerHTML = "No publications found. Please add data/publications.bib.";
+                });
+        });
+
+        function processPublications(entries) {
+            document.getElementById('pub-loading').style.display = 'none';
+
+            allPublications = entries.filter(e => e.fields && e.fields.title).map(entry => {
+                const fields = entry.fields;
+                let tags = [];
+                if (fields.keywords) {
+                    tags = fields.keywords.split(',').map(tag => tag.trim());
+                }
+
+                let venue = fields.journal || fields.booktitle || fields.publisher || '';
+
+                return {
+                    id: entry.id,
+                    title: fields.title,
+                    authors: formatAuthors(fields.author || ''),
+                    venue: venue,
+                    year: parseInt(fields.year) || 0,
+                    tags: tags,
+                    url: fields.url || null,
+                    project: fields.project || null
+                };
+            }).sort((a, b) => b.year - a.year);
+
+            buildFilters();
+            renderPublications();
+        }
+
+        function formatAuthors(authorStr) {
+            return authorStr.replace(/\band\b/g, ', ');
+        }
+
+        function buildFilters() {
+            const tagSet = new Set();
+            allPublications.forEach(pub => pub.tags.forEach(tag => tagSet.add(tag)));
+
+            const tags = Array.from(tagSet).sort();
+            tags.unshift('All');
+
+            const filterContainer = document.getElementById('filter-container');
+            filterContainer.innerHTML = '';
+
+            tags.forEach(tag => {
+                const btn = document.createElement('button');
+                btn.className = `filter-btn ${tag === activeTag ? 'active' : ''}`;
+                btn.textContent = tag;
+                btn.addEventListener('click', () => {
+                    activeTag = tag;
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    renderPublications();
+                });
+                filterContainer.appendChild(btn);
+            });
+        }
+
+        function renderPublications() {
+            const container = document.getElementById('publications-container');
+            container.innerHTML = '';
+
+            const filtered = allPublications.filter(pub => activeTag === 'All' || pub.tags.includes(activeTag));
+
+            if (filtered.length === 0) {
+                container.innerHTML = "<p>No publications match your filter.</p>";
+                return;
+            }
+
+            const grouped = {};
+            filtered.forEach(pub => {
+                if (!grouped[pub.year]) grouped[pub.year] = [];
+                grouped[pub.year].push(pub);
+            });
+
+            Object.keys(grouped).sort((a, b) => b - a).forEach(year => {
+                let html = `<div class="year-group">
+                                <h2 class="year-title">${year === '0' ? 'In Submission/Other' : year}</h2>`;
+
+                grouped[year].forEach(pub => {
+                    let tagsHtml = pub.tags.length > 0 ?
+                        `<div class="pub-tags">${pub.tags.map(t => `<span class="pub-tag">${t}</span>`).join('')}</div>` : '';
+
+                    let linksHtml = '';
+                    if (pub.url || pub.project) {
+                        linksHtml += `<div class="pub-links">`;
+                        if (pub.url) linksHtml += `<a href="${pub.url}" target="_blank" class="pub-link">Paper</a>`;
+                        if (pub.project) linksHtml += `<a href="${pub.project}" target="_blank" class="pub-link">Project Page</a>`;
+                        linksHtml += `</div>`;
+                    }
+
+                    html += `
+                        <div class="pub-item">
+                            <div class="pub-title">${pub.title}</div>
+                            <div class="pub-authors">${pub.authors}</div>
+                            ${pub.venue ? `<div class="pub-venue">${pub.venue}</div>` : ''}
+                            ${tagsHtml}
+                            ${linksHtml}
+                        </div>
+                    `;
+                });
+
+                html += `</div>`;
+                container.innerHTML += html;
+            });
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team | LIVE Robotics - UVA</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Styles -->
+    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="stylesheet" href="./styles/components.css">
+    <style>
+        .team-section {
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .team-section:first-child {
+            margin-top: var(--spacing-xl);
+            /* Add margin since page header is gone */
+        }
+
+        .team-section h2 {
+            border-bottom: 2px solid var(--color-uva-orange);
+            display: inline-block;
+            padding-bottom: 4px;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        /* Profile Card */
+        .profile-card {
+            background: var(--color-white);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+            text-align: center;
+            transition: transform var(--transition-medium), box-shadow var(--transition-medium);
+            padding-bottom: var(--spacing-md);
+        }
+
+        .profile-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .profile-img-container {
+            width: 100%;
+            height: 280px;
+            overflow: hidden;
+            background-color: var(--color-light-gray);
+        }
+
+        .profile-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 0;
+        }
+
+        .profile-info {
+            padding: var(--spacing-md);
+        }
+
+        .profile-name {
+            font-size: 1.25rem;
+            color: var(--color-uva-blue);
+            margin-bottom: 4px;
+        }
+
+        .profile-role {
+            font-weight: 600;
+            color: var(--color-uva-orange);
+            font-size: 0.9rem;
+            margin-bottom: var(--spacing-sm);
+            text-transform: uppercase;
+        }
+
+        .profile-email a {
+            color: var(--color-link-blue);
+            font-size: 0.9rem;
+            display: block;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .profile-focus {
+            font-size: 0.9rem;
+            color: var(--color-text-gray);
+            margin-top: var(--spacing-sm);
+        }
+
+        /* Lists for alumni / simpler profiles */
+        .simple-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: var(--spacing-md);
+        }
+
+        .simple-list li {
+            background: var(--color-white);
+            padding: var(--spacing-md);
+            border-radius: 4px;
+            border-left: 4px solid var(--color-uva-blue);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .simple-list-name {
+            font-weight: 600;
+            color: var(--color-uva-blue);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .simple-list-detail {
+            font-size: 0.85rem;
+            color: var(--color-text-gray);
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="global-header">
+        <div class="container header-top">
+            <a href="index.html" class="header-brand">
+                <img src="./assets/images/logo.png" alt="LIVE Lab Logo" class="logo"
+                    onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'60\'><rect width=\'100\' height=\'60\' fill=\'%23232d4b\'/><text x=\'50\' y=\'35\' font-family=\'Arial\' font-size=\'14\' fill=\'white\' text-anchor=\'middle\'>LOGO</text></svg>'">
+                <h1>UVA Learning and Interactive Robotics Lab</h1>
+            </a>
+            <button class="mobile-menu-toggle">☰</button>
+        </div>
+        <nav class="container">
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="team.html" class="active">Team</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="publications.html">Publications</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+
+        <div id="team-container">
+            <!-- Dynamic Content Injected Here -->
+            <p style="text-align: center;">Loading team data...</p>
+        </div>
+
+    </main>
+
+    <footer class="global-footer">
+        <div class="container footer-content">
+            <div>
+                <h3>LIVE Robotics Lab</h3>
+                <p>University of Virginia<br>
+                    Department of Computer Science / Engineering<br>
+                    Charlottesville, VA 22904</p>
+            </div>
+            <div>
+                <h3>Quick Links</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="team.html">Team</a></li>
+                    <li><a href="research.html">Research</a></li>
+                    <li><a href="publications.html">Publications</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>&copy; <span id="year"></span> UVA Learning and Interactive Robotics Lab. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="./scripts/main.js"></script>
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        const svgPlaceholder = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><rect width='300' height='300' fill='%23dadada'/><path d='M150 70 A40 40 0 1 0 150 150 A40 40 0 1 0 150 70 Z M90 230 C90 180 210 180 210 230 Z' fill='%23666666'/></svg>";
+
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch('./data/team.json')
+                .then(response => {
+                    if (!response.ok) throw new Error("Could not load team.json");
+                    return response.json();
+                })
+                .then(data => renderTeam(data))
+                .catch(err => {
+                    console.error(err);
+                    document.getElementById('team-container').innerHTML = "<p>Error loading team data.</p>";
+                });
+        });
+
+        function renderCard(member, defaultRole) {
+            const role = member.role || defaultRole;
+            const photoSrc = member.photo ? `./assets/images/team/${member.photo}` : svgPlaceholder;
+            const emailLink = member.email ? `<span class="profile-email"><a href="mailto:${member.email}">${member.email}</a></span>` : '';
+            const focusHtml = member.focus ? `<div class="profile-focus"><strong>Focus:</strong> ${member.focus}</div>` : '';
+
+            return `
+                <div class="profile-card">
+                    <div class="profile-img-container">
+                        <img src="${photoSrc}" alt="${member.name}" onerror="this.src='${svgPlaceholder}'">
+                    </div>
+                    <div class="profile-info">
+                        <h3 class="profile-name">${member.name}</h3>
+                        ${role ? `<div class="profile-role">${role}</div>` : ''}
+                        ${emailLink}
+                        ${focusHtml}
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderSimpleList(members) {
+            let html = '<ul class="simple-list">';
+            members.forEach(member => {
+                const detail1 = member.email ? `<a href="mailto:${member.email}">${member.email}</a>` : (member.role || '');
+                const detail2 = member.focus || member.current || '';
+
+                html += `
+                    <li>
+                        <span class="simple-list-name">${member.name}</span>
+                        ${detail1 ? `<span class="simple-list-detail">${detail1}</span>` : ''}
+                        ${detail2 ? `<span class="simple-list-detail" style="margin-top:4px;">${detail2}</span>` : ''}
+                    </li>
+                `;
+            });
+            html += '</ul>';
+            return html;
+        }
+
+        function renderTeam(data) {
+            const container = document.getElementById('team-container');
+            container.innerHTML = '';
+
+            if (data.pi && data.pi.length > 0) {
+                let html = '<div class="team-section"><h2>Principal Investigator</h2><div class="team-grid">';
+                data.pi.forEach(member => html += renderCard(member, 'Principal Investigator'));
+                html += '</div></div>';
+                container.innerHTML += html;
+            }
+
+            if (data.phd && data.phd.length > 0) {
+                let html = '<div class="team-section"><h2>PhD Students</h2><div class="team-grid">';
+                data.phd.forEach(member => html += renderCard(member, 'PhD Student'));
+                html += '</div></div>';
+                container.innerHTML += html;
+            }
+
+            if (data.masters && data.masters.length > 0) {
+                let html = '<div class="team-section"><h2>Master\'s Students</h2>';
+                html += renderSimpleList(data.masters);
+                html += '</div>';
+                container.innerHTML += html;
+            }
+
+            if (data.undergrad && data.undergrad.length > 0) {
+                let html = '<div class="team-section"><h2>Undergraduate Students</h2>';
+                html += renderSimpleList(data.undergrad);
+                html += '</div>';
+                container.innerHTML += html;
+            }
+
+            if (data.alumni && data.alumni.length > 0) {
+                let html = '<div class="team-section"><h2>Alumni</h2>';
+                html += renderSimpleList(data.alumni);
+                html += '</div>';
+                container.innerHTML += html;
+            }
+        }
+    </script>
+</body>
+
+</html>

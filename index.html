@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LIVE Robotics - UVA Learning and Interactive Robotics Lab</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Styles -->
+    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="stylesheet" href="./styles/components.css">
+    <style>
+        .hero {
+            position: relative;
+            background-color: var(--color-uva-blue);
+            color: var(--color-white);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 60vh;
+        }
+
+        /* Carousel Container */
+        .carousel-container {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .carousel-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity var(--transition-medium);
+            z-index: 1;
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+            z-index: 2;
+        }
+
+        .carousel-slide img,
+        .carousel-slide video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 0;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(35, 45, 75, 0.9), rgba(35, 45, 75, 0.4));
+            z-index: 3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 4;
+            text-align: center;
+            padding: var(--spacing-xl) var(--spacing-md);
+            pointer-events: none;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: var(--spacing-md);
+            color: var(--color-white);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-lg);
+            color: var(--color-light-gray);
+            font-weight: 400;
+        }
+
+        .carousel-title-display {
+            font-size: 1.25rem;
+            color: var(--color-uva-orange);
+            background: rgba(35, 45, 75, 0.8);
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            border-radius: 4px;
+            pointer-events: auto;
+            margin-top: var(--spacing-md);
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(4px);
+        }
+
+        .carousel-title-display.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 5;
+            transition: background var(--transition-fast);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-nav:hover {
+            background: var(--color-uva-orange);
+        }
+
+        .carousel-nav.prev {
+            left: var(--spacing-md);
+        }
+
+        .carousel-nav.next {
+            right: var(--spacing-md);
+        }
+
+        .carousel-indicators {
+            position: absolute;
+            bottom: var(--spacing-md);
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 5;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            border: none;
+            cursor: pointer;
+            transition: background var(--transition-fast);
+        }
+
+        .indicator.active {
+            background: var(--color-uva-orange);
+        }
+
+        .news-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .news-item {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+            padding-bottom: var(--spacing-md);
+            border-bottom: 1px solid var(--color-medium-gray);
+        }
+
+        .news-date {
+            color: var(--color-uva-orange);
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .news-item {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-xs);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="global-header">
+        <div class="container header-top">
+            <a href="index.html" class="header-brand">
+                <img src="./assets/images/logo.png" alt="LIVE Lab Logo" class="logo"
+                    onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'60\'><rect width=\'100\' height=\'60\' fill=\'%23232d4b\'/><text x=\'50\' y=\'35\' font-family=\'Arial\' font-size=\'14\' fill=\'white\' text-anchor=\'middle\'>LOGO</text></svg>'">
+                <h1>UVA Learning and Interactive Robotics Lab</h1>
+            </a>
+            <button class="mobile-menu-toggle">☰</button>
+        </div>
+        <nav class="container">
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="team.html">Team</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="publications.html">Publications</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="carousel-container" id="hero-carousel">
+            </div>
+            <div class="hero-overlay"></div>
+
+            <button class="carousel-nav prev" id="carousel-prev" aria-label="Previous slider">❮</button>
+            <button class="carousel-nav next" id="carousel-next" aria-label="Next slider">❯</button>
+
+            <div class="carousel-indicators" id="carousel-indicators"></div>
+
+            <div class="container hero-content">
+                <h2 class="hero-title">LIVE Robotics</h2>
+                <p class="hero-subtitle">Advancing robot learning and interaction for the real world</p>
+                <div class="carousel-title-display" id="carousel-title">Loading Featured Project...</div>
+            </div>
+        </section>
+
+        <section id="about" class="section section-light">
+            <div class="container">
+                <h2 class="section-title">About Us</h2>
+                <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                    <p>The Learning and Interactive Robotics (LIVE) Lab at the University of Virginia focuses on
+                        developing intelligent robotic systems that can safely and effectively operate in unstructured
+                        environments. We explore the intersection of machine learning, control theory, and human-robot
+                        interaction to build robots that learn from and adapt to humans.</p>
+                    <a href="research.html" class="btn btn-outline">Explore Our Research</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Recent News</h2>
+                <div style="max-width: 800px; margin: 0 auto;">
+                    <ul class="news-list" id="news-container">
+                        <li class="news-item">
+                            <div class="news-date">Sep 2024</div>
+                            <div>
+                                <strong>Welcome New Students!</strong> We are excited to welcome several new PhD and
+                                Master's students to the lab this Fall.
+                            </div>
+                        </li>
+                        <li class="news-item">
+                            <div class="news-date">Jul 2024</div>
+                            <div>
+                                <strong>Paper Accepted!</strong> Our new paper on reinforcement learning for object
+                                manipulation has been accepted to IROS 2024. See you in Abu Dhabi!
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="global-footer">
+        <div class="container footer-content">
+            <div>
+                <h3>LIVE Robotics Lab</h3>
+                <p>University of Virginia<br>
+                    Department of Computer Science / Engineering<br>
+                    Charlottesville, VA 22904</p>
+            </div>
+            <div>
+                <h3>Quick Links</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="team.html">Team</a></li>
+                    <li><a href="research.html">Research</a></li>
+                    <li><a href="publications.html">Publications</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>&copy; <span id="year"></span> UVA Learning and Interactive Robotics Lab. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="./scripts/main.js"></script>
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const carouselContainer = document.getElementById('hero-carousel');
+            const carouselTitle = document.getElementById('carousel-title');
+            const indicatorsContainer = document.getElementById('carousel-indicators');
+            let currentSlide = 0;
+            let slidesData = [];
+            let slideInterval;
+
+            fetch('./data/highlighted_projects.json')
+                .then(response => {
+                    if (!response.ok) throw new Error('Network error');
+                    return response.json();
+                })
+                .then(data => {
+                    slidesData = data;
+                    if (slidesData.length === 0) {
+                        displayFallback();
+                        return;
+                    }
+                    buildCarousel();
+                    startCarousel();
+                })
+                .catch(error => {
+                    console.warn('Fallback layout used:', error);
+                    displayFallback();
+                });
+
+            function displayFallback() {
+                carouselContainer.innerHTML = `
+                    <div class="carousel-slide active" style="background-color: var(--color-uva-blue)"></div>
+                `;
+                carouselTitle.style.display = 'none';
+                document.getElementById('carousel-prev').style.display = 'none';
+                document.getElementById('carousel-next').style.display = 'none';
+            }
+
+            function buildCarousel() {
+                carouselContainer.innerHTML = '';
+                indicatorsContainer.innerHTML = '';
+
+                slidesData.forEach((item, index) => {
+                    const slide = document.createElement('div');
+                    slide.className = `carousel-slide ${index === 0 ? 'active' : ''}`;
+
+                    if (item.path && (item.path.endsWith('.mp4') || item.path.endsWith('.webm'))) {
+                        slide.innerHTML = `<video src="${item.path}" autoplay muted loop playsinline></video>`;
+                    } else if (item.path) {
+                        slide.innerHTML = `<img src="${item.path}" alt="${item.title}">`;
+                    } else {
+                        slide.style.backgroundColor = 'var(--color-uva-blue)';
+                    }
+
+                    carouselContainer.appendChild(slide);
+
+                    const indicator = document.createElement('button');
+                    indicator.className = `indicator ${index === 0 ? 'active' : ''}`;
+                    indicator.setAttribute('aria-label', `Go to slide ${index + 1}`);
+                    indicator.addEventListener('click', () => goToSlide(index));
+                    indicatorsContainer.appendChild(indicator);
+                });
+
+                updateTitle();
+            }
+
+            function updateTitle() {
+                carouselTitle.classList.remove('show');
+                setTimeout(() => {
+                    carouselTitle.textContent = slidesData[currentSlide].title || '';
+                    carouselTitle.classList.add('show');
+                }, 200);
+            }
+
+            function goToSlide(n) {
+                const slides = document.querySelectorAll('.carousel-slide');
+                const indicators = document.querySelectorAll('.indicator');
+
+                if (slides.length === 0) return;
+
+                slides[currentSlide].classList.remove('active');
+                if (indicators[currentSlide]) indicators[currentSlide].classList.remove('active');
+
+                currentSlide = (n + slides.length) % slides.length;
+
+                slides[currentSlide].classList.add('active');
+                if (indicators[currentSlide]) indicators[currentSlide].classList.add('active');
+
+                updateTitle();
+                resetInterval();
+            }
+
+            document.getElementById('carousel-prev').addEventListener('click', () => goToSlide(currentSlide - 1));
+            document.getElementById('carousel-next').addEventListener('click', () => goToSlide(currentSlide + 1));
+
+            function startCarousel() {
+                slideInterval = setInterval(() => goToSlide(currentSlide + 1), 5000);
+            }
+            function resetInterval() {
+                clearInterval(slideInterval);
+                startCarousel();
+            }
+        });
+    </script>
+</body>
+
+</html>

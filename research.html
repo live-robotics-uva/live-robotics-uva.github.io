@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research | LIVE Robotics - UVA</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Styles -->
+    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="stylesheet" href="./styles/components.css">
+    <style>
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+            /* Add Top Margin since Header was removed */
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .project-card {
+            background: var(--color-white);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+            transition: transform var(--transition-medium), box-shadow var(--transition-medium);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .project-card img,
+        .project-card video {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 3px solid var(--color-uva-orange);
+        }
+
+        .project-card-content {
+            padding: var(--spacing-md);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card-title {
+            font-size: 1.25rem;
+            margin-bottom: var(--spacing-sm);
+            color: var(--color-uva-blue);
+        }
+
+        .project-card-desc {
+            font-size: 0.95rem;
+            color: var(--color-text-gray);
+            margin-bottom: var(--spacing-md);
+            flex-grow: 1;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .project-tag {
+            background: var(--color-light-gray);
+            color: var(--color-text-gray);
+            font-size: 0.8rem;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="global-header">
+        <div class="container header-top">
+            <a href="index.html" class="header-brand">
+                <img src="./assets/images/logo.png" alt="LIVE Lab Logo" class="logo"
+                    onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'60\'><rect width=\'100\' height=\'60\' fill=\'%23232d4b\'/><text x=\'50\' y=\'35\' font-family=\'Arial\' font-size=\'14\' fill=\'white\' text-anchor=\'middle\'>LOGO</text></svg>'">
+                <h1>UVA Learning and Interactive Robotics Lab</h1>
+            </a>
+            <button class="mobile-menu-toggle">☰</button>
+        </div>
+        <nav class="container">
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="team.html">Team</a></li>
+                <li><a href="research.html" class="active">Research</a></li>
+                <li><a href="publications.html">Publications</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+
+        <div class="project-grid">
+            <div class="project-card">
+                <img src="./assets/hero/project1_placeholder.jpg" alt="Project 1"
+                    onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'300\'><rect width=\'600\' height=\'300\' fill=\'%23dadada\'/><text x=\'300\' y=\'150\' font-family=\'Arial\' font-size=\'20\' fill=\'%23666666\' text-anchor=\'middle\'>Project Image / Video</text></svg>'">
+                <div class="project-card-content">
+                    <h3 class="project-card-title">Agile Legged Locomotion</h3>
+                    <div class="project-tags">
+                        <span class="project-tag">Reinforcement Learning</span>
+                        <span class="project-tag">Locomotion</span>
+                    </div>
+                    <p class="project-card-desc">Training robust policies for quadrupedal robots to navigate highly
+                        irregular terrain dynamically.</p>
+                    <a href="#" class="btn btn-outline"
+                        style="align-self: flex-start; padding: 0.5rem 1rem; font-size: 0.8rem;">Project Page</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="./assets/hero/project2_placeholder.jpg" alt="Project 2"
+                    onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'300\'><rect width=\'600\' height=\'300\' fill=\'%23dadada\'/><text x=\'300\' y=\'150\' font-family=\'Arial\' font-size=\'20\' fill=\'%23666666\' text-anchor=\'middle\'>Project Image / Video</text></svg>'">
+                <div class="project-card-content">
+                    <h3 class="project-card-title">Interactive Object Manipulation</h3>
+                    <div class="project-tags">
+                        <span class="project-tag">Computer Vision</span>
+                        <span class="project-tag">Manipulation</span>
+                    </div>
+                    <p class="project-card-desc">Developing closed-loop visuo-motor control for dextrous robotic hands
+                        manipulating everyday objects.</p>
+                    <a href="#" class="btn btn-outline"
+                        style="align-self: flex-start; padding: 0.5rem 1rem; font-size: 0.8rem;">Project Page</a>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="global-footer">
+        <div class="container footer-content">
+            <div>
+                <h3>LIVE Robotics Lab</h3>
+                <p>University of Virginia<br>
+                    Department of Computer Science / Engineering<br>
+                    Charlottesville, VA 22904</p>
+            </div>
+            <div>
+                <h3>Quick Links</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="team.html">Team</a></li>
+                    <li><a href="research.html">Research</a></li>
+                    <li><a href="publications.html">Publications</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>&copy; <span id="year"></span> UVA Learning and Interactive Robotics Lab. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="./scripts/main.js"></script>
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+
+</html>

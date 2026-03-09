@@ -1,0 +1,68 @@
+{
+    "pi": [
+        {
+            "name": "Dr. Example PI",
+            "role": "Principal Investigator",
+            "email": "pi@virginia.edu",
+            "focus": "Robot Learning, Human-Robot Interaction",
+            "photo": ""
+        }
+    ],
+    "phd": [
+        {
+            "name": "Jane Doe",
+            "role": "PhD Student",
+            "email": "jane@virginia.edu",
+            "focus": "Reinforcement Learning, Manipulation",
+            "photo": ""
+        },
+        {
+            "name": "John Smith",
+            "role": "PhD Student",
+            "email": "john@virginia.edu",
+            "focus": "Computer Vision, Agile Locomotion",
+            "photo": ""
+        },
+        {
+            "name": "Alice Johnson",
+            "role": "PhD Student",
+            "email": "alice@virginia.edu",
+            "focus": "Sim-to-Real Transfer",
+            "photo": ""
+        },
+        {
+            "name": "Bob Brown",
+            "role": "PhD Student",
+            "email": "bob@virginia.edu",
+            "focus": "Multi-agent Systems",
+            "photo": ""
+        },
+        {
+            "name": "Charlie Davis",
+            "role": "PhD Student",
+            "email": "charlie@virginia.edu",
+            "focus": "Imitation Learning",
+            "photo": ""
+        }
+    ],
+    "masters": [
+        {
+            "name": "Eva Green",
+            "email": "eva@virginia.edu",
+            "focus": "Autonomous Navigation"
+        }
+    ],
+    "undergrad": [
+        {
+            "name": "Frank White",
+            "email": "frank@virginia.edu",
+            "focus": "Hardware Integration"
+        }
+    ],
+    "alumni": [
+        {
+            "name": "Grace Lee",
+            "current": "Software Engineer at Google"
+        }
+    ]
+}

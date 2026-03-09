@@ -1,0 +1,219 @@
+/* Reusable UI Components */
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    transition: all var(--transition-medium);
+    border: none;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.9rem;
+}
+
+.btn-primary {
+    background-color: var(--color-uva-orange);
+    color: var(--color-white);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:hover {
+    background-color: #cc6600;
+    text-decoration: none;
+    color: var(--color-white);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: var(--color-uva-blue);
+    color: var(--color-white);
+}
+
+.btn-secondary:hover {
+    background-color: #1a2238;
+    text-decoration: none;
+    color: var(--color-white);
+    transform: translateY(-2px);
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 2px solid var(--color-uva-blue);
+    color: var(--color-uva-blue);
+}
+
+.btn-outline:hover {
+    background-color: var(--color-uva-blue);
+    color: var(--color-white);
+    text-decoration: none;
+}
+
+/* Header & Navigation */
+.global-header {
+    background-color: var(--color-white);
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-md) 0;
+    border-bottom: 1px solid var(--color-medium-gray);
+}
+
+.header-brand {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    text-decoration: none;
+}
+
+.header-brand img.logo {
+    height: 60px;
+    width: auto;
+    object-fit: contain;
+}
+
+.header-brand h1 {
+    font-size: 1.5rem;
+    margin: 0;
+    color: var(--color-uva-blue);
+    line-height: 1.2;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-md) 0;
+    margin: 0;
+    justify-content: center;
+}
+
+.nav-menu li a {
+    color: var(--color-text-main);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    position: relative;
+    padding-bottom: 4px;
+}
+
+.nav-menu li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--color-uva-orange);
+    transition: width var(--transition-fast);
+}
+
+.nav-menu li a:hover {
+    color: var(--color-uva-orange);
+    text-decoration: none;
+}
+
+.nav-menu li a:hover::after {
+    width: 100%;
+}
+
+.nav-menu li a.active {
+    color: var(--color-uva-orange);
+}
+
+.nav-menu li a.active::after {
+    width: 100%;
+}
+
+/* Mobile Menu Toggle */
+.mobile-menu-toggle {
+    display: none;
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    color: var(--color-uva-blue);
+    cursor: pointer;
+}
+
+/* Footer */
+.global-footer {
+    background-color: var(--color-uva-blue);
+    color: var(--color-white);
+    padding: var(--spacing-xl) 0 var(--spacing-md);
+    margin-top: var(--spacing-xl);
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+.footer-content h3 {
+    color: var(--color-white);
+}
+
+.footer-content p {
+    color: var(--color-medium-gray);
+}
+
+.footer-content a {
+    color: var(--color-uva-orange);
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: var(--spacing-md);
+    font-size: 0.9rem;
+    color: var(--color-medium-gray);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .header-top {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-sm);
+    }
+
+    .header-brand h1 {
+        font-size: 1.2rem;
+    }
+
+    .nav-menu {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        display: none;
+        padding-bottom: var(--spacing-md);
+    }
+
+    .nav-menu.active {
+        display: flex;
+    }
+
+    .mobile-menu-toggle {
+        display: block;
+        position: absolute;
+        right: var(--spacing-md);
+        top: var(--spacing-md);
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+}
