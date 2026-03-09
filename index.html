@@ -256,20 +256,7 @@
                 <h2 class="section-title">News</h2>
                 <div style="max-width: 800px; margin: 0 auto;">
                     <ul class="news-list" id="news-container">
-                        <li class="news-item">
-                            <div class="news-date">Sep 2024</div>
-                            <div>
-                                <strong>Welcome New Students!</strong> We are excited to welcome several new PhD and
-                                Master's students to the lab this Fall.
-                            </div>
-                        </li>
-                        <li class="news-item">
-                            <div class="news-date">Jul 2024</div>
-                            <div>
-                                <strong>Paper Accepted!</strong> Our new paper on reinforcement learning for object
-                                manipulation has been accepted to IROS 2024. See you in Abu Dhabi!
-                            </div>
-                        </li>
+                        <li style="text-align: center; color: var(--color-text-gray);">Loading news...</li>
                     </ul>
                 </div>
             </div>
@@ -403,6 +390,30 @@
                 clearInterval(slideInterval);
                 startCarousel();
             }
+
+            // Load News
+            fetch('./data/news.json')
+                .then(response => {
+                    if (!response.ok) throw new Error('Network error');
+                    return response.json();
+                })
+                .then(newsData => {
+                    const newsContainer = document.getElementById('news-container');
+                    newsContainer.innerHTML = '';
+                    newsData.forEach(item => {
+                        const li = document.createElement('li');
+                        li.className = 'news-item';
+                        li.innerHTML = `
+                            <div class="news-date">${item.date}</div>
+                            <div>${item.content}</div>
+                        `;
+                        newsContainer.appendChild(li);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error loading news:', error);
+                    document.getElementById('news-container').innerHTML = '<li style="text-align: center; color: var(--color-text-gray);">Failed to load news.</li>';
+                });
         });
     </script>
 </body>

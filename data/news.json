@@ -1,0 +1,22 @@
+[
+    {
+        "date": "Feb 2026",
+        "content": "Yen-Ling Kuo gave a new talk \"Learning Physically and Cognitively Grounded Robotic Assistants\" that summarizes our recent work and our vision to build useful and helpful robotic assistants. <a href=\"https://cassyni.com/events/5swDpcuzNf9t4QsGLTxgz1\" target=\"_blank\">Watch the video here.</a>"
+    },
+    {
+        "date": "Feb 2026",
+        "content": "We released the hardware guide and code for our low-cost open-source tactile-force-controlled gripper (<a href=\"https://force-gripper.github.io/\" target=\"_blank\">TF-Gripper</a>)."
+    },
+    {
+        "date": "Jul 2025",
+        "content": "We released the datasets, environment, and base models for <a href=\"https://live-robotics-uva.github.io/movingout_ai/\" target=\"_blank\">Moving Out</a>, a benchmark for physically grounded human-AI collaboration."
+    },
+    {
+        "date": "Jun 2025",
+        "content": "Yen-Ling Kuo received the NSF CAREER Award for building a computational framework for diverse physical and social interactions with grounding and theory of mind reasoning. <a href=\"https://engineering.virginia.edu/news-events/news/uva-computer-scientist-wins-nsf-career-award-help-robots-engage-complex-human-behavior\" target=\"_blank\">Read the news here.</a>"
+    },
+    {
+        "date": "May 2025",
+        "content": "<a href=\"https://diffdagger.github.io/\" target=\"_blank\">Diff-DAgger</a> is highlighted as an IEEE WiRA Early Career Contribution at <a href=\"https://2025.ieee-icra.org/\" target=\"_blank\">ICRA 2025</a>!"
+    }
+]
