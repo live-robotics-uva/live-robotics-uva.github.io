@@ -31,7 +31,7 @@
 
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
             gap: var(--spacing-lg);
         }
 
@@ -53,7 +53,7 @@
 
         .profile-img-container {
             width: 100%;
-            height: 280px;
+            height: 170px;
             overflow: hidden;
             background-color: var(--color-light-gray);
         }
@@ -96,12 +96,11 @@
             margin-top: var(--spacing-sm);
         }
 
-        /* Lists for alumni / simpler profiles */
         .simple-list {
             list-style: none;
             padding: 0;
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
             gap: var(--spacing-md);
         }
 
@@ -203,16 +202,23 @@
         function renderCard(member, defaultRole) {
             const role = member.role || defaultRole;
             const photoSrc = member.photo ? `./assets/images/team/${member.photo}` : svgPlaceholder;
-            const emailLink = member.email ? `<span class="profile-email"><a href="mailto:${member.email}">${member.email}</a></span>` : '';
+
+            const emailLink = member.email ? `<span class="profile-email">${member.email}</span>` : '';
             const focusHtml = member.focus ? `<div class="profile-focus"><strong>Focus:</strong> ${member.focus}</div>` : '';
+
+            const imageHtml = `<img src="${photoSrc}" alt="${member.name}" onerror="this.src='${svgPlaceholder}'">`;
+            const nameHtml = `<h3 class="profile-name">${member.name}</h3>`;
+
+            const linkedImageHtml = member.website ? `<a href="${member.website}" target="_blank">${imageHtml}</a>` : imageHtml;
+            const linkedNameHtml = member.website ? `<a href="${member.website}" target="_blank" style="color: inherit; text-decoration: none;">${nameHtml}</a>` : nameHtml;
 
             return `
                 <div class="profile-card">
                     <div class="profile-img-container">
-                        <img src="${photoSrc}" alt="${member.name}" onerror="this.src='${svgPlaceholder}'">
+                        ${linkedImageHtml}
                     </div>
                     <div class="profile-info">
-                        <h3 class="profile-name">${member.name}</h3>
+                        ${linkedNameHtml}
                         ${role ? `<div class="profile-role">${role}</div>` : ''}
                         ${emailLink}
                         ${focusHtml}
@@ -224,7 +230,7 @@
         function renderSimpleList(members) {
             let html = '<ul class="simple-list">';
             members.forEach(member => {
-                const detail1 = member.email ? `<a href="mailto:${member.email}">${member.email}</a>` : (member.role || '');
+                const detail1 = member.email ? member.email : (member.role || '');
                 const detail2 = member.focus || member.current || '';
 
                 html += `

@@ -1,68 +1,128 @@
 {
     "pi": [
         {
-            "name": "Dr. Example PI",
+            "name": "Yen-Ling Kuo",
             "role": "Principal Investigator",
-            "email": "pi@virginia.edu",
-            "focus": "Robot Learning, Human-Robot Interaction",
-            "photo": ""
+            "email": "ylkuo[at]virginia.edu",
+            "website": "https://yenlingkuo.com",
+            "photo": "yenling.jpg"
         }
     ],
     "phd": [
         {
-            "name": "Jane Doe",
+            "name": "Xuhui Kang",
             "role": "PhD Student",
-            "email": "jane@virginia.edu",
-            "focus": "Reinforcement Learning, Manipulation",
-            "photo": ""
+            "email": "xuhui[at]virginia.edu",
+            "website": "https://scholar.google.com/citations?user=sIY8FtgAAAAJ&hl=en&authuser=1",
+            "focus": "Human-Robot Collaboration, Force-Aware Manipulation",
+            "photo": "XuhuiKang.png"
         },
         {
-            "name": "John Smith",
+            "name": "Sung-Wook Lee",
             "role": "PhD Student",
-            "email": "john@virginia.edu",
-            "focus": "Computer Vision, Agile Locomotion",
-            "photo": ""
+            "email": "dcs3zc[at]virginia.edu",
+            "website": "https://seansungwooklee.github.io/",
+            "focus": "Data-Driven Robot Learning, Representation Learning",
+            "photo": "SeanLee.jpg"
         },
         {
-            "name": "Alice Johnson",
+            "name": "Yufeng Gao",
             "role": "PhD Student",
-            "email": "alice@virginia.edu",
-            "focus": "Sim-to-Real Transfer",
-            "photo": ""
+            "email": "baz7dy[at]virginia.edu",
+            "focus": "Reinforcement Learning, Latent Steering & Intervention",
+            "photo": "YufengGao.jpg"
         },
         {
-            "name": "Bob Brown",
+            "name": "Rui Shen",
             "role": "PhD Student",
-            "email": "bob@virginia.edu",
-            "focus": "Multi-agent Systems",
-            "photo": ""
+            "email": "kqn9mt[at]virginia.edu",
+            "focus": "Multimodal LLMs, Driver-Assist Systems, Human-Robot Interaction",
+            "photo": "RuiShen.JPG"
         },
         {
-            "name": "Charlie Davis",
+            "name": "Yan Zhuang",
             "role": "PhD Student",
-            "email": "charlie@virginia.edu",
-            "focus": "Imitation Learning",
-            "photo": ""
+            "email": "yyx3hd[at]virginia.edu",
+            "website": "https://yanzhuang12.github.io/",
+            "focus": "Embodied & Social Intelligence, Bilevel Planning",
+            "photo": "YanZhuang.jpg"
         }
     ],
     "masters": [
         {
-            "name": "Eva Green",
-            "email": "eva@virginia.edu",
-            "focus": "Autonomous Navigation"
+            "name": "Sabrina Lopez"
+        },
+        {
+            "name": "Zeqiang Ning"
+        },
+        {
+            "name": "Weiran Shen"
+        },
+        {
+            "name": "Jinyoon Kim"
+        },
+        {
+            "name": "An-Chi Chen"
         }
     ],
     "undergrad": [
         {
-            "name": "Frank White",
-            "email": "frank@virginia.edu",
-            "focus": "Hardware Integration"
+            "name": "Seth Lifland",
+            "current": "UVA CS"
+        },
+        {
+            "name": "Yi Ping",
+            "current": "UVA CS"
+        },
+        {
+            "name": "Richard He",
+            "current": "UVA CS"
+        },
+        {
+            "name": "Angelica Bain",
+            "current": "UVA CS"
+        },
+        {
+            "name": "Jeremy Ky",
+            "current": "UVA CS"
         }
     ],
     "alumni": [
         {
-            "name": "Grace Lee",
-            "current": "Software Engineer at Google"
+            "name": "Tongxuan Tian",
+            "current": "Master's, CS (2025)"
+        },
+        {
+            "name": "Klaus Peng",
+            "current": "Master's, CS (2025)"
+        },
+        {
+            "name": "Tristan Scott",
+            "current": "Undergrad, MAE (2025)"
+        },
+        {
+            "name": "Yuyan Wang",
+            "current": "Undergrad, CS (2025)"
+        },
+        {
+            "name": "Alex Ning",
+            "current": "Undergrad, CS (2024)"
+        },
+        {
+            "name": "Vainateya Rangaraju",
+            "current": "Undergrad, CS (2024)"
+        },
+        {
+            "name": "Varun Reddy",
+            "current": "Undergrad, CS (2024)"
+        },
+        {
+            "name": "Brandon Yang",
+            "current": "Undergrad, CS (2024)"
+        },
+        {
+            "name": "Celine Zhou",
+            "current": "Undergrad, CS (2024)"
         }
     ]
 }
