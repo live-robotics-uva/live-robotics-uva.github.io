@@ -79,7 +79,7 @@
 }
 
 .header-brand img.logo {
-    height: 60px;
+    height: 90px;
     width: auto;
     object-fit: contain;
 }
@@ -189,6 +189,8 @@
         flex-direction: column;
         align-items: flex-start;
         gap: var(--spacing-sm);
+        padding-left: var(--spacing-md);
+        padding-right: var(--spacing-md);
     }
 
     .header-brand h1 {
