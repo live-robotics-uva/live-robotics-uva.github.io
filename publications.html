@@ -16,20 +16,19 @@
         .filter-section {
             display: flex;
             flex-wrap: wrap;
-            gap: 12px;
-            margin-bottom: var(--spacing-xl);
-            margin-top: var(--spacing-xl);
-            /* Adjusted for no header */
+            gap: 6px;
+            margin-bottom: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
             justify-content: center;
         }
 
         .filter-btn {
             background: var(--color-white);
-            border: 2px solid var(--color-medium-gray);
+            border: 1px solid var(--color-medium-gray);
             color: var(--color-text-gray);
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 0.9rem;
+            padding: 4px 10px;
+            border-radius: 16px;
+            font-size: 0.8rem;
             cursor: pointer;
             transition: all var(--transition-fast);
             font-weight: 500;
@@ -47,7 +46,7 @@
         }
 
         .year-group {
-            margin-bottom: var(--spacing-xl);
+            margin-bottom: var(--spacing-md);
         }
 
         .year-title {
@@ -61,8 +60,8 @@
         .pub-item {
             display: flex;
             flex-direction: column;
-            padding: var(--spacing-md);
-            margin-bottom: var(--spacing-md);
+            padding: 12px 16px;
+            margin-bottom: 12px;
             background: var(--color-white);
             border-radius: 8px;
             box-shadow: var(--shadow-sm);
@@ -76,38 +75,40 @@
         }
 
         .pub-title {
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             font-weight: 600;
             color: var(--color-uva-blue);
-            margin-bottom: 4px;
+            margin-bottom: 2px;
+            line-height: 1.3;
         }
 
         .pub-authors {
             color: var(--color-text-gray);
-            margin-bottom: 4px;
-            font-size: 0.95rem;
+            margin-bottom: 2px;
+            font-size: 0.9rem;
         }
 
         .pub-venue {
             font-style: italic;
             color: var(--color-text-main);
-            margin-bottom: var(--spacing-sm);
-            font-size: 0.95rem;
+            margin-bottom: 6px;
+            font-size: 0.85rem;
         }
 
         .pub-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: var(--spacing-sm);
+            gap: 6px;
+            margin-bottom: 6px;
         }
 
         .pub-tag {
             background: var(--color-light-gray);
             color: var(--color-text-gray);
-            font-size: 0.75rem;
-            padding: 2px 8px;
+            font-size: 0.7rem;
+            padding: 2px 6px;
             border-radius: 12px;
+            line-height: 1;
         }
 
         .pub-links {
@@ -255,10 +256,16 @@
         }
 
         function buildFilters() {
-            const tagSet = new Set();
-            allPublications.forEach(pub => pub.tags.forEach(tag => tagSet.add(tag)));
+            const tagCounts = {};
+            allPublications.forEach(pub => {
+                pub.tags.forEach(tag => {
+                    tagCounts[tag] = (tagCounts[tag] || 0) + 1;
+                });
+            });
 
-            const tags = Array.from(tagSet).sort();
+            const tags = Object.keys(tagCounts)
+                .filter(tag => tagCounts[tag] >= 2)
+                .sort((a, b) => tagCounts[b] - tagCounts[a]);
             tags.unshift('All');
 
             const filterContainer = document.getElementById('filter-container');
@@ -269,9 +276,17 @@
                 btn.className = `filter-btn ${tag === activeTag ? 'active' : ''}`;
                 btn.textContent = tag;
                 btn.addEventListener('click', () => {
-                    activeTag = tag;
-                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
+                    if (activeTag === tag && tag !== 'All') {
+                        activeTag = 'All';
+                        document.querySelectorAll('.filter-btn').forEach(b => {
+                            b.classList.remove('active');
+                            if (b.textContent === 'All') b.classList.add('active');
+                        });
+                    } else {
+                        activeTag = tag;
+                        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                        btn.classList.add('active');
+                    }
                     renderPublications();
                 });
                 filterContainer.appendChild(btn);
@@ -311,11 +326,16 @@
                         linksHtml += `</div>`;
                     }
 
+                    let venueHtml = pub.venue ? pub.venue : '';
+                    if (pub.year > 0) {
+                        venueHtml += venueHtml ? `, ${pub.year}` : `${pub.year}`;
+                    }
+
                     html += `
                         <div class="pub-item">
                             <div class="pub-title">${pub.title}</div>
                             <div class="pub-authors">${pub.authors}</div>
-                            ${pub.venue ? `<div class="pub-venue">${pub.venue}</div>` : ''}
+                            ${venueHtml ? `<div class="pub-venue">${venueHtml}</div>` : ''}
                             ${tagsHtml}
                             ${linksHtml}
                         </div>
