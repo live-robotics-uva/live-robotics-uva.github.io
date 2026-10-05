@@ -1,5 +1,9 @@
 [
     {
+        "date": "Jun 2026",
+        "content": "Yen-Ling Kuo was interviewed by IEEE Spectrum on training robots to make educated guesses and learn tasks on the fly. <a href=\"https://spectrum.ieee.org/researcher-trains-robots-to-guess\" target=\"_blank\">Read the article here.</a>"
+    },
+    {
         "date": "Feb 2026",
         "content": "Yen-Ling Kuo gave a new talk \"Learning Physically and Cognitively Grounded Robotic Assistants\" that summarizes our recent work and our vision to build useful and helpful robotic assistants. <a href=\"https://cassyni.com/events/5swDpcuzNf9t4QsGLTxgz1\" target=\"_blank\">Watch the video here.</a>"
     },
